@@ -21,50 +21,51 @@ import java.awt.Font;
 import java.awt.Insets;
 
 /**
- * Shared visual theme, color palette, typography, and Swing component helpers
- * to keep all 8 OS Simulator modules visually consistent and presentation-ready.
+ * Shared visual theme styled after the Operating System Workspace UI:
+ * dark OS top bar, warm stone/cream canvas, crisp white cards, and coral-orange accents.
  */
 public final class Theme {
 
     private Theme() {
     }
 
-    public static final Color BG_APP = new Color(244, 246, 250);
-    public static final Color BG_SIDEBAR = new Color(22, 30, 46);
-    public static final Color BG_SIDEBAR_HOVER = new Color(36, 48, 72);
-    public static final Color BG_SIDEBAR_ACTIVE = new Color(59, 130, 246);
+    public static final Color BG_TOPBAR = new Color(28, 27, 26);
+    public static final Color BG_APP = new Color(245, 242, 237);
+    public static final Color BG_SIDEBAR = new Color(239, 236, 230);
+    public static final Color BG_SIDEBAR_HOVER = new Color(229, 224, 216);
+    public static final Color BG_SIDEBAR_ACTIVE = new Color(252, 234, 228);
     public static final Color BG_CARD = Color.WHITE;
-    public static final Color BG_SUBTLE = new Color(248, 250, 252);
+    public static final Color BG_SUBTLE = new Color(250, 248, 245);
 
-    public static final Color BORDER_LIGHT = new Color(226, 232, 240);
-    public static final Color BORDER_FOCUS = new Color(59, 130, 246);
+    public static final Color BORDER_LIGHT = new Color(226, 221, 213);
+    public static final Color BORDER_FOCUS = new Color(232, 93, 63);
 
-    public static final Color TEXT_PRIMARY = new Color(15, 23, 42);
-    public static final Color TEXT_SECONDARY = new Color(71, 85, 105);
-    public static final Color TEXT_MUTED = new Color(100, 116, 139);
-    public static final Color TEXT_ON_DARK = new Color(241, 245, 249);
+    public static final Color TEXT_PRIMARY = new Color(28, 25, 23);
+    public static final Color TEXT_SECONDARY = new Color(87, 83, 78);
+    public static final Color TEXT_MUTED = new Color(120, 113, 108);
+    public static final Color TEXT_ON_DARK = new Color(245, 245, 244);
 
-    public static final Color PRIMARY = new Color(37, 99, 235);
-    public static final Color PRIMARY_DARK = new Color(29, 78, 216);
+    public static final Color PRIMARY = new Color(232, 93, 63);       // Coral-Orange
+    public static final Color PRIMARY_DARK = new Color(194, 65, 36);  // Deep Coral
     public static final Color SUCCESS = new Color(22, 163, 74);
     public static final Color SUCCESS_BG = new Color(220, 252, 231);
     public static final Color DANGER = new Color(220, 38, 38);
     public static final Color DANGER_BG = new Color(254, 226, 226);
     public static final Color WARNING = new Color(217, 119, 6);
     public static final Color WARNING_BG = new Color(254, 243, 199);
-    public static final Color INFO_BG = new Color(219, 234, 254);
+    public static final Color INFO_BG = new Color(252, 234, 228);
 
     public static final Color[] SERIES_COLORS = new Color[] {
+            new Color(232, 93, 63),   // Coral-Orange (CPU)
+            new Color(124, 58, 237),  // Violet (Memory)
+            new Color(13, 148, 136),  // Teal (Storage)
             new Color(59, 130, 246),  // Blue
-            new Color(16, 185, 129),  // Emerald
             new Color(245, 158, 11),  // Amber
-            new Color(139, 92, 246),  // Violet
+            new Color(16, 185, 129),  // Emerald
             new Color(236, 72, 153),  // Pink
-            new Color(20, 184, 166),  // Teal
-            new Color(249, 115, 22),  // Orange
             new Color(99, 102, 241),  // Indigo
-            new Color(6, 182, 212),   // Cyan
-            new Color(132, 204, 22)   // Lime
+            new Color(249, 115, 22),  // Orange
+            new Color(6, 182, 212)    // Cyan
     };
 
     public static final Font FONT_TITLE = new Font("Segoe UI", Font.BOLD, 20);
@@ -196,9 +197,9 @@ public final class Theme {
 
     public static JPanel createMetricCard(String label, JLabel valueLabel, Color accent) {
         JPanel card = new JPanel(new BorderLayout(2, 2));
-        card.setBackground(BG_SUBTLE);
+        card.setBackground(BG_CARD);
         card.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 4, 0, 0, accent),
+                BorderFactory.createMatteBorder(0, 0, 3, 0, accent),
                 BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(BORDER_LIGHT, 1),
                         BorderFactory.createEmptyBorder(8, 10, 8, 10))));

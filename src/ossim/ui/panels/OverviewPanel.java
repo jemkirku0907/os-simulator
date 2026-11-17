@@ -9,11 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.function.Consumer;
 
 /**
- * Welcome / Dashboard panel providing quick-launch cards for all 8 OS Simulator modules.
+ * Welcome / System Overview dashboard panel styled after the Operating System Workspace UI.
  */
 public class OverviewPanel extends JPanel {
 
@@ -39,11 +40,51 @@ public class OverviewPanel extends JPanel {
     public OverviewPanel(Consumer<String> navigator) {
         setLayout(new BorderLayout(12, 12));
         setBackground(Theme.BG_APP);
-        setBorder(BorderFactory.createEmptyBorder(16, 18, 16, 18));
+        setBorder(BorderFactory.createEmptyBorder(18, 20, 14, 20));
 
-        JPanel header = Theme.createModuleHeader(
-                "Operating System Simulator",
-                "Interactive Java GUI covering 8 core OS modules with dynamic unlimited inputs, real-time calculations, and visual diagrams.");
+        // System Overview Header matching the Workspace aesthetic
+        JPanel header = new JPanel(new BorderLayout(8, 4));
+        header.setOpaque(false);
+
+        JPanel titleStack = new JPanel(new GridLayout(3, 1, 0, 2));
+        titleStack.setOpaque(false);
+
+        JLabel eyebrow = new JLabel("SYSTEM OVERVIEW");
+        eyebrow.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        eyebrow.setForeground(Theme.PRIMARY);
+
+        JLabel headline = new JLabel("Operating System Simulator.");
+        headline.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        headline.setForeground(Theme.TEXT_PRIMARY);
+
+        JLabel subtitle = new JLabel("All 8 core OS modules are loaded with unlimited dynamic inputs, validation, and visual charts.");
+        subtitle.setFont(Theme.FONT_SUBTITLE);
+        subtitle.setForeground(Theme.TEXT_SECONDARY);
+
+        titleStack.add(eyebrow);
+        titleStack.add(headline);
+        titleStack.add(subtitle);
+
+        JPanel statusPill = new JPanel(new BorderLayout(4, 2));
+        statusPill.setBackground(Color.WHITE);
+        statusPill.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Theme.BORDER_LIGHT, 1),
+                BorderFactory.createEmptyBorder(8, 12, 8, 12)));
+        JLabel statusTitle = new JLabel("●  All systems normal");
+        statusTitle.setFont(Theme.FONT_BODY_BOLD);
+        statusTitle.setForeground(Theme.SUCCESS);
+        JLabel statusSub = new JLabel("8/8 modules verified");
+        statusSub.setFont(Theme.FONT_METRIC_LABEL);
+        statusSub.setForeground(Theme.TEXT_MUTED);
+        statusPill.add(statusTitle, BorderLayout.NORTH);
+        statusPill.add(statusSub, BorderLayout.SOUTH);
+
+        JPanel pillWrap = new JPanel(new BorderLayout());
+        pillWrap.setOpaque(false);
+        pillWrap.add(statusPill, BorderLayout.NORTH);
+
+        header.add(titleStack, BorderLayout.CENTER);
+        header.add(pillWrap, BorderLayout.EAST);
         add(header, BorderLayout.NORTH);
 
         JPanel grid = new JPanel(new GridLayout(0, 2, 12, 12));
@@ -58,7 +99,7 @@ public class OverviewPanel extends JPanel {
             JPanel card = new JPanel(new BorderLayout(8, 8));
             card.setBackground(Theme.BG_CARD);
             card.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createMatteBorder(0, 5, 0, 0, accent),
+                    BorderFactory.createMatteBorder(0, 0, 3, 0, accent),
                     BorderFactory.createCompoundBorder(
                             BorderFactory.createLineBorder(Theme.BORDER_LIGHT, 1),
                             BorderFactory.createEmptyBorder(12, 14, 12, 14))));
@@ -90,14 +131,5 @@ public class OverviewPanel extends JPanel {
         scroll.setBorder(null);
         scroll.getViewport().setBackground(Theme.BG_APP);
         add(scroll, BorderLayout.CENTER);
-
-        JPanel tips = Theme.createCard(null);
-        JLabel tipLabel = new JLabel(
-                "<html><b>Dynamic Input &amp; Testing Ready:</b> Every module supports arbitrary-size datasets (add/remove rows or paste variable-length lists), "
-                        + "includes <i>Load Small Sample</i> &amp; <i>Load Large Dataset</i> buttons, and performs full input validation without crashing.</html>");
-        tipLabel.setFont(Theme.FONT_BODY);
-        tipLabel.setForeground(Theme.TEXT_SECONDARY);
-        tips.add(tipLabel, BorderLayout.CENTER);
-        add(tips, BorderLayout.SOUTH);
     }
 }
